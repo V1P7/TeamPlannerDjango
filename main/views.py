@@ -1,3 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def index(request):
+	title = "Главная страница"
+	
+	context = {
+		'title': title,
+	}
+	return render(request, 'main/index.html', context)
