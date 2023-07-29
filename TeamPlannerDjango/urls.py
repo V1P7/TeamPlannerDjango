@@ -7,7 +7,9 @@ from TeamPlannerDjango import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
-    path('', include('main_dev.urls')),
+    path('team/', include('main_dev.urls')),
+    path('account/', include('accounts.urls')),
+    
 ]
 
 if settings.DEBUG:
