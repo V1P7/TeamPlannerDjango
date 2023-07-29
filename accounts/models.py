@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from datetime import date
 
 
 class User(AbstractUser):
@@ -10,7 +9,7 @@ class User(AbstractUser):
 	birthday = models.DateField(null = True, blank = True)
 	position = models.CharField(max_length = 20)
 	join_date = models.DateField(null = True, blank = True)
-	photo = models.ImageField(upload_to = 'media', blank = True)
+	image = models.ImageField(upload_to='media', blank=True, default='media/avatar.png')
 	is_on_leave = models.BooleanField(default = False)
 	vacations_days = models.PositiveIntegerField(default = 0)
 	

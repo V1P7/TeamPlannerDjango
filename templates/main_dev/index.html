@@ -335,8 +335,8 @@
                     <ul class="info-menu right-links list-inline list-unstyled">
                         <li class="profile list-inline-item">
                             <a href="#" data-toggle="dropdown" class="toggle">
-                                <img src="{% static 'main_dev/data/profile/profile.png' %}" alt="user-image" class="rounded-circle img-inline">
-                                <span>Name Name<i class="fa fa-angle-down"></i></span>
+                                <img src="{{ image.url }}" alt="user-image" class="rounded-circle img-inline">
+                                <span>{{ first_name}} {{ last_name }}<i class="fa fa-angle-down"></i></span>
                             </a>
                             <ul class="dropdown-menu profile animated fadeIn">
                                 <li class="dropdown-item">
@@ -358,7 +358,7 @@
                                     </a>
                                 </li>
                                 <li class="last dropdown-item">
-                                    <a href="ui-login.html">
+                                    <a href="{% url 'logout' %}">
                                         <i class="fa fa-lock"></i>
                                         Logout
                                     </a>
@@ -392,27 +392,27 @@
 
                         <div class="profile-image col-lg-4 col-md-4 col-4">
                             <a href="ui-profile.html">
-                                <img src="{% static 'main_dev/data/profile/profile.png' %}" class="img-fluid rounded-circle">
+                                <img src="{{ image.url }}" class="img-fluid rounded-circle">
                             </a>
                         </div>
 
                         <div class="profile-details col-lg-8 col-md-8 col-8">
 
                             <h3>
-                                <a href="ui-profile.html">Name Name</a>
+                                <a href="ui-profile.html">{{ first_name}} {{ last_name }}</a>
 
                                 <!-- Available statuses: online, idle, busy, away and offline -->
                                 <span class="profile-status online"></span>
                             </h3>
 
-                            <p class="profile-title">POSITION: Web Developer</p>
+                            <p class="profile-title">{{ position}}</p>
 
                         </div>
 
                     </div>
                     <!-- USER INFO - END -->
                     <ul class='wraplist'>
-                        <li class="open"> 
+                        <li class="open">
                             <a href="index.html">
                                 <i class="fa-solid fa-list"></i>
                                 <span class="title">To-do list</span>
@@ -433,7 +433,7 @@
                             </a>
                         </li>
                         <li class="">
-                            <a href="">
+                            <a href="{% url 'logout' %}">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                                 <span class="title">Logout</span>
                                 <span class="title"></span>
@@ -446,18 +446,249 @@
             <!-- START CONTENT -->
             <section id="main-content" class=" ">
                 <section class="wrapper main-wrapper" style=''>
+
                     <div class='col-xl-12 col-lg-12 col-md-12 col-12'>
                         <div class="page-title">
+
                             <div class="float-left">
-                                <h1 class="title">Main</h1>
+                                <h1 class="title">User Profile</h1>                            </div>
+
+                            <div class="float-right d-none">
+                                <ol class="breadcrumb">
+                                    <li>
+                                        <a href="index.html"><i class="fa fa-home"></i>Home</a>
+                                    </li>
+                                    <li>
+                                        <a href="ui-pricing.html">Pages</a>
+                                    </li>
+                                    <li class="active">
+                                        <strong>Profile</strong>
+                                    </li>
+                                </ol>
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix">
-                        <h2>???</h2>
-                    </div>
+                    <div class="clearfix"></div>
                     <div class="col-xl-12">
+                        <section class="box nobox">
+                            <div class="content-body">    <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-12">
+                                        <div class="uprofile-image">
+                                            <img src="{{ image.url }}" class="img-fluid">
+                                        </div>
+                                        <div class="uprofile-name">
+                                            <h3>
+                                                <a href="#">{{ first_name}} {{ last_name }}</a>
+                                                <!-- Available statuses: online, idle, busy, away and offline -->
+                                                <span class="uprofile-status online"></span>
+                                            </h3>
+                                            <p class="uprofile-title">{{ position}}</p>
+                                        </div>
+                                        <div class="uprofile-info">
+                                            <ul class="list-unstyled">
+                                                <li><i class='fa fa-home'></i> New York, USA</li>
+                                                <li><i class='fa fa-user'></i> 340 Contacts</li>
+                                                <li><i class='fa fa-suitcase'></i>{{ position }}</li>
+                                            </ul>
+                                        </div>
+                                        <div class=" uprofile-social">
+                                            <a href="#" class="btn btn-primary btn-md facebook"><i class="fa fa-facebook icon-xs"></i></a>
+                                            <a href="#" class="btn btn-primary btn-md twitter"><i class="fa fa-twitter icon-xs"></i></a>
+                                            <a href="#" class="btn btn-primary btn-md google-plus"><i class="fa fa-google-plus icon-xs"></i></a>
+                                            <a href="#" class="btn btn-primary btn-md dribbble"><i class="fa fa-dribbble icon-xs"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-8 col-12">
+                                        <div class="uprofile-content">
+                                            <div class="enter_post col-lg-12 col-md-12 col-12">
+                                                <div class="form-group">
+                                                    <div class="controls">
+                                                        <textarea class="form-control autogrow" id="field-7"  placeholder="What's on your mind?"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="enter_post_btns col-lg-12 col-md-12 col-12">
+                                                    <a href="#" class="btn btn-md float-right btn-primary">Post</a>
+                                                    <a href="#" class="btn btn-md float-right btn-link"><i class="fa fa-image"></i></a>
+                                                    <a href="#" class="btn btn-md float-right btn-link"><i class="fa fa-map-marker"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <div class="uprofile_wall_posts col-md-12 col-sm-12 col-xs-12">
+                                                <div class="pic-wrapper col-md-1 col-sm-1 col-xs-2 text-center">
+                                                    <img src="data/profile/avatar-2.png" class="" alt="">
+                                                </div>
+                                                <div class="info-wrapper col-md-11 col-sm-11 col-xs-10">
+                                                    <div class="username">
+                                                        <span class="bold">John Smith</span> post in group <span class="bold">work</span>
+                                                    </div>
+                                                    <div class="info text-muted">
+                                                        "Balance" is a concept based on human perception and the complex nature of the human senses of weight and proportion. Humans can evaluate these visual elements in several situations to find a sense of balance.
+                                                    </div>
+                                                    <div class="info-details">
+                                                        <ul class="list-unstyled list-inline">
+                                                            <li><a href="#" class="text-muted">15 Minutes ago</a></li>
+                                                            <li><a href="#" class="text-muted"><i class="fa fa-comment"></i> 584</a></li>
+                                                            <li><a href="#" class="text-orange"><i class="fa fa-heart"></i> 12k</a></li>
+                                                            <li><a href="#" class="text-info"><i class="fa fa-reply"></i> Reply</a></li>
+                                                            <li><a href="#" class="text-warning"><i class="fa fa-star"></i> Favourite</a></li>
+                                                            <li><a href="#" class="text-muted">More</a></li>
+                                                        </ul>
 
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="comment">
+                                                        <div class="pic-wrapper col-md-1 col-sm-1 col-xs-2 text-center">
+                                                            <img data-src-retina="data/profile/avatar-3.png" data-src="data/profile/avatar-3.png" src="data/profile/avatar-3.png" alt="">
+                                                        </div>
+                                                        <div class="info-wrapper col-md-11 col-sm-11 col-xs-10">
+                                                            <div class="username">
+                                                                <span class="bold">Fin</span>
+                                                            </div>
+                                                            <div class="info text-muted">
+                                                                Perfect info for the project. Great work :)
+                                                            </div>
+                                                            <div class="info-details">
+                                                                <ul class="list-unstyled list-inline">
+                                                                    <li><a href="#" class="text-muted">10 Minutes ago</a></li>
+                                                                    <li><a href="#" class="text-orange"><i class="fa fa-heart-o"></i> Like</a></li>
+                                                                    <li><a href="#" class="text-muted">More</a></li>
+                                                                </ul>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+
+                                                    <div class="clearfix"></div>
+                                                    <div class="comment">
+                                                        <div class="pic-wrapper col-md-1 col-sm-1 col-xs-2 text-center">
+                                                            <img data-src-retina="data/profile/avatar-4.png" data-src="data/profile/avatar-4.png" src="data/profile/avatar-4.png" alt="">
+                                                        </div>
+                                                        <div class="info-wrapper col-md-11 col-sm-11 col-xs-10">
+                                                            <div class="username">
+                                                                <span class="bold">Arun</span>
+                                                            </div>
+                                                            <div class="info text-muted">
+                                                                Keep it up. Much appreciated effort.
+                                                            </div>
+                                                            <div class="info-details">
+                                                                <ul class="list-unstyled list-inline">
+                                                                    <li><a href="#" class="text-muted">8 Minutes ago</a></li>
+                                                                    <li><a href="#" class="text-orange"><i class="fa fa-heart"></i> Liked</a></li>
+                                                                    <li><a href="#" class="text-muted">More</a></li>
+                                                                </ul>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+
+                                                    <div class="comment comment-input">
+
+                                                        <div class="pic-wrapper col-md-1 col-sm-1 col-xs-2 text-center">
+                                                            <img data-src-retina="data/profile/profile.png" data-src="data/profile/profile.png" src="data/profile/profile.png" alt="">
+                                                        </div>
+                                                        <div class="info-wrapper col-md-11 col-sm-11 col-xs-10">
+                                                            <div class="input-group primary  col-md-6">
+                                                                <input type="text" class="form-control" placeholder="Post a comment">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-rocket"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="uprofile_wall_posts col-md-12 col-sm-12 col-xs-12">
+                                                <div class="pic-wrapper col-md-1 col-sm-1 col-xs-2 text-center">
+                                                    <img src="data/profile/avatar-1.png" class="" alt="">
+                                                </div>
+                                                <div class="info-wrapper col-md-11 col-sm-11 col-xs-10">
+                                                    <div class="username">
+                                                        <span class="bold">John Smith</span> post in group <span class="bold">work</span>
+                                                    </div>
+                                                    <div class="info text-muted">
+                                                        "Balance" is a concept based on human perception and the complex nature of the human senses of weight and proportion. Humans can evaluate these visual elements in several situations to find a sense of balance.
+                                                    </div>
+                                                    <div class="info-details">
+                                                        <ul class="list-unstyled list-inline">
+                                                            <li><a href="#" class="text-muted">15 Minutes ago</a></li>
+                                                            <li><a href="#" class="text-muted"><i class="fa fa-comment"></i> 584</a></li>
+                                                            <li><a href="#" class="text-orange"><i class="fa fa-heart"></i> 12k</a></li>
+                                                            <li><a href="#" class="text-info"><i class="fa fa-reply"></i> Reply</a></li>
+                                                            <li><a href="#" class="text-warning"><i class="fa fa-star"></i> Favourite</a></li>
+                                                            <li><a href="#" class="text-muted">More</a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="comment">
+                                                        <div class="pic-wrapper col-md-1 col-sm-1 col-xs-2 text-center">
+                                                            <img data-src-retina="data/profile/avatar-2.png" data-src="data/profile/avatar-2.png" src="data/profile/avatar-2.png" alt="">
+                                                        </div>
+                                                        <div class="info-wrapper col-md-11 col-sm-11 col-xs-10">
+                                                            <div class="username">
+                                                                <span class="bold">Fin</span>
+                                                            </div>
+                                                            <div class="info text-muted">
+                                                                Perfect info for the project. Great work :)
+                                                            </div>
+                                                            <div class="info-details">
+                                                                <ul class="list-unstyled list-inline">
+                                                                    <li><a href="#" class="text-muted">10 Minutes ago</a></li>
+                                                                    <li><a href="#" class="text-orange"><i class="fa fa-heart-o"></i> Like</a></li>
+                                                                    <li><a href="#" class="text-muted">More</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="clearfix"></div>
+                                                    <div class="comment">
+                                                        <div class="pic-wrapper col-md-1 col-sm-1 col-xs-2 text-center">
+                                                            <img data-src-retina="data/profile/avatar-3.png" data-src="data/profile/avatar-3.png" src="data/profile/avatar-3.png" alt="">
+                                                        </div>
+                                                        <div class="info-wrapper col-md-11 col-sm-11 col-xs-10">
+                                                            <div class="username">
+                                                                <span class="bold">Arun</span>
+                                                            </div>
+                                                            <div class="info text-muted">
+                                                                Keep it up. Much appreciated effort.
+                                                            </div>
+                                                            <div class="info-details">
+                                                                <ul class="list-unstyled list-inline">
+                                                                    <li><a href="#" class="text-muted">8 Minutes ago</a></li>
+                                                                    <li><a href="#" class="text-orange"><i class="fa fa-heart"></i> Liked</a></li>
+                                                                    <li><a href="#" class="text-muted">More</a></li>
+                                                                </ul>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="comment comment-input">
+                                                        <div class="pic-wrapper col-md-1 col-sm-1 col-xs-2 text-center">
+                                                            <img data-src-retina="data/profile/profile.png" data-src="data/profile/profile.png" src="data/profile/profile.png" alt="">
+                                                        </div>
+                                                        <div class="info-wrapper col-md-11 col-sm-11 col-xs-10">
+                                                            <div class="input-group primary  col-md-6">
+                                                                <input type="text" class="form-control" placeholder="Post a comment">
+                                                                <span class="input-group-addon">
+                                                                    <i class="fa fa-rocket"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </section>
             </section>
