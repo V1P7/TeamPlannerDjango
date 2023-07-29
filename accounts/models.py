@@ -6,7 +6,6 @@ from datetime import date
 class User(AbstractUser):
 	first_name = models.CharField(max_length = 100)
 	last_name = models.CharField(max_length = 100)
-	login = models.CharField(max_length = 100)
 	age = models.PositiveIntegerField(null = True, blank = True)
 	birthday = models.DateField(null = True, blank = True)
 	position = models.CharField(max_length = 20)
@@ -16,4 +15,4 @@ class User(AbstractUser):
 	vacations_days = models.PositiveIntegerField(default = 0)
 	
 	def __str__(self):
-		return self.login
+		return self.username

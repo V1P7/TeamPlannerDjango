@@ -1,12 +1,36 @@
+{% extends 'accounts/base.html' %}
 
-<h1>Регистрация</h1>
+{% block content %}
+	<div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+      <header>SignUp</header>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p style="text-align: center">First name</p>
+        {{ form.first_name }}
+        <p style="text-align: center">Last name</p>
+        {{ form.last_name }}
+        <p style="text-align: center">Username</p>
+        {{ form.username }}
+        <p style="text-align: center">Password</p>
+        {{ form.password }}
+        <p style="text-align: center">Choose photo</p>
+        {{ form.photo }}
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-dark btn-lg">Create</button>
+        </div>
+        <p></p>
+    </form>
+    <div class="signup">
+        <span class="signup">Already have an account?
+          <a href="{% url 'signin' %}"><label>SignIn</label></a>
+        </span>
+      </div>
+    </div>
+  </div>
+{% endblock %}
 
-<form method="post" enctype="multipart/form-data">
 
-  {% csrf_token %}
 
-  {{ form.as_p }}
-
-  <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-</form>
 

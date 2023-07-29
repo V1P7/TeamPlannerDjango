@@ -1,0 +1,30 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+	<div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+      <header>SignUp</header>
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p style="text-align: center">Username</p>
+        {{ form.username }}
+        <p style="text-align: center">Password</p>
+        {{ form.password }}
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-dark btn-lg">Login</button>
+        </div>
+        <p></p>
+    </form>
+    <div class="signup">
+        <span class="signup">Don't have an account?
+          <a href="{% url 'signup' %}"><label>SignUp</label></a>
+        </span>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+
+
