@@ -1,23 +1,18 @@
-from urllib import request
-from django.shortcuts import render
+
+from django.shortcuts import redirect, render
+
+from .forms import SignUpForm
 
 
 def signup(request):
-	title = 'Sign Up'
-	context = {
-		'title': title
-	}
-	return render(request, 'accounts/signup.html', context)
-
-
-def signin(request):
-	title = 'Sign In'
-	context = {
-		'title': title
-	}
-	return render(request, 'accounts/signin.html', context)
-
-
-# def logout_user(request):
-#     logout(request)
-#     return redirect('login')
+	form = SignUpForm()
+	if request.method == 'POST':
+		form = SignUpForm(request.POST)
+		if form.is_valid():
+			user = form.save()
+			# процедура сохранения пароля
+			return redirect('index')
+	else:
+		form = SignUpForm()
+	
+	return render(request, 'accounts/signup.html', {'form': form})
