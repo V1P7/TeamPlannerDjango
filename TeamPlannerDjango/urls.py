@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('team/', include('main_dev.urls')),
     path('account/', include('accounts.urls')),
+    path('team/team_panel/', include('to_do_list.urls')),
     
 ]
 

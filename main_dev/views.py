@@ -4,7 +4,7 @@ from accounts.models import User
 
 def index(request):
 	user, created = User.objects.get_or_create(username=request.user.username)
-	title = "Главная страница"
+	title = "title"
 	context = {
 		'title': title,
 		'first_name': user.first_name,

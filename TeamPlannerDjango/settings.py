@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'main_dev.apps.MainDevConfig',
     'accounts.apps.AccountsConfig',
+    'to_do_list.apps.ToDoListConfig',
 ]
 
 MIDDLEWARE = [
