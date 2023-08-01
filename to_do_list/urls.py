@@ -8,4 +8,7 @@ from . import views
 
 urlpatterns = [
 	path('to_do_list/', views.to_do_list, name = 'to_do_list'),
+	path('edit_todo/<int:pk>/', views.edit_todo, name='edit_todo'),
+	path('complete_todo/<int:pk>/', views.complete_todo, name='complete_todo'),
+	path('delete_todo/<int:pk>/', views.delete_todo, name='delete_todo'),
 ]

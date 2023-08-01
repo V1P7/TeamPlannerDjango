@@ -23,7 +23,10 @@
         <link href="{% static 'main_dev/css/style.css' %}" rel="stylesheet" type="text/css"/>
         <link href="{% static 'main_dev/css/responsive.css' %}" rel="stylesheet" type="text/css"/>
         <!-- CORE CSS TEMPLATE - END -->
-        <style>
+<style>
+    .todo-item.completed .todo-title {
+        text-decoration: line-through;
+    }
 
     .container {
       max-width: 500px;

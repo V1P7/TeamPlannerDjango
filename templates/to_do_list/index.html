@@ -21,15 +21,15 @@
                     </div>
                 </div>
                     {% for todo in todos %}
-                        <div class="todo-item">
+                        <div class="todo-item {% if todo.is_complete %}completed{% endif %}">
                             <div class="todo-title">{{ todo.title }}</div>
                             <div class="todo-description">{{ todo.description }}</div>
                             <div class="todo-footer">
                                 <div class="todo-deadline">Deadline: {{ todo.deadline|date:"d-m-Y" }}</div>
-                                <div class="todo-actions">
-                                    <button class="btn btn-edit">Редактировать</button>
-                                    <button class="btn btn-done">Выполнено</button>
-                                    <button class="btn btn-delete">Удалить</button>
+                                <div class="todo-actions ">
+                                    <button class="btn btn-edit"><a href="{% url 'edit_todo' todo.pk %}">Edit</a></button>
+                                    <button class="btn btn-done"><a href="{% url 'complete_todo' todo.pk %}">Done</a></button>
+                                    <button class="btn btn-delete"><a href="{% url 'delete_todo' todo.pk %}">Delete</a></button>
                                 </div>
                             </div>
                         </div>

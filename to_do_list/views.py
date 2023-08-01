@@ -39,3 +39,28 @@ def to_do_list(request):
 		'todos': todos,
 	}
 	return render(request, 'to_do_list/index.html', context)
+
+
+def edit_todo(request, pk):
+	todo = ToDo.objects.get(pk = pk)
+	if request.method == 'POST':
+		form = ToDoForm(request.POST, instance = todo)
+		if form.is_valid():
+			form.save()
+			return redirect('to_do_list')
+	
+	form = ToDoForm(instance = todo)
+	return render(request, 'to_do_list/edit_todo.html', {'form': form})
+
+
+def complete_todo(request, pk):
+	todo = ToDo.objects.get(pk = pk)
+	todo.is_complete = True
+	todo.save()
+	return redirect('to_do_list')
+
+
+def delete_todo(request, pk):
+	todo = ToDo.objects.get(pk = pk)
+	todo.delete()
+	return redirect('to_do_list')
