@@ -1,4 +1,5 @@
 {% extends 'main_dev/base.html' %}
+
 {% block content %}
     <section id="main-content" class=" ">
                 <section class="wrapper main-wrapper" style=''>
@@ -6,7 +7,18 @@
                         <div class="page-title">
                             <div class="float-left">
                                 <h1 class="title">To-do list</h1>
-                                <h1 class="title">To-do list</h1>
+                                <form method="post">
+  {% csrf_token %}
+
+  {% for field in form %}
+    <div class="form-group">
+      {{ field.label_tag }}
+      {{ field }}
+    </div>
+  {% endfor %}
+
+  <button type="submit">Создать</button>
+</form>
                             </div>
                         </div>
                     </div>

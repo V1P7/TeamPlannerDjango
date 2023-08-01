@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import ToDo
 from accounts.models import User
 from rest_framework import viewsets, filters
 from .serializers import ToDoSerializzer
+from .forms import ToDoForm
 
 
 class ToDoViewSet(viewsets.ModelViewSet):
@@ -26,3 +27,17 @@ def to_do_list(request):
 		'image': user.image,
 	}
 	return render(request, 'to_do_list/index.html', context)
+
+
+def create_todo(request):
+	form = ToDoForm()
+	if request.method == 'POST':
+		form = ToDoForm(request.POST)
+		if form.is_valid():
+			todo = form.save(commit = False)
+			todo.user = request.user
+			todo.save()
+			return redirect('to_do_list')
+	
+	context = {'form': form}
+	return render(request, 'to_do_list/to_do_form.html', context)
