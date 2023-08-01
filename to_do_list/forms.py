@@ -3,6 +3,8 @@ from .models import ToDo
 
 
 class ToDoForm(forms.ModelForm):
-    class Meta:
-        model = ToDo
-        fields = ['title', 'description']
+	deadline = forms.DateField(widget = forms.DateInput(attrs = {'type': 'date'}))
+	
+	class Meta:
+		model = ToDo
+		fields = ['title', 'description', 'deadline']

@@ -8,5 +8,4 @@ from . import views
 
 urlpatterns = [
 	path('to_do_list/', views.to_do_list, name = 'to_do_list'),
-	path('create/', views.create_todo, name = 'create_to_do'),
 ]

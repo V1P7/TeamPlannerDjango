@@ -3,25 +3,38 @@
 {% block content %}
     <section id="main-content" class=" ">
                 <section class="wrapper main-wrapper" style=''>
-                    <div class='col-xl-12 col-lg-12 col-md-12 col-12'>
-                        <div class="page-title">
-                            <div class="float-left">
-                                <h1 class="title">To-do list</h1>
-                                <form method="post">
-  {% csrf_token %}
-
-  {% for field in form %}
-    <div class="form-group">
-      {{ field.label_tag }}
-      {{ field }}
-    </div>
-  {% endfor %}
-
-  <button type="submit">Создать</button>
-</form>
+                <h1 class="title">To-do list</h1>
+                <div class="container">
+                    <div class="todo-form">
+                        <form method="post"class="todo-form">
+                            {% csrf_token %}
+                                <div class="form-group">
+                                    {{ form.title.label }}
+                                    {{ form.title }}
+                                    {{ form.description.label }}
+                                    {{ form.description }}
+                                    {{ form.deadline.label }}
+                                    {{ form.deadline }}
+                                </div>
+                            <button type="submit" class="btn">Create</button>
+                        </form>
+                    </div>
+                </div>
+                    {% for todo in todos %}
+                        <div class="todo-item">
+                            <div class="todo-title">{{ todo.title }}</div>
+                            <div class="todo-description">{{ todo.description }}</div>
+                            <div class="todo-footer">
+                                <div class="todo-deadline">Deadline: {{ todo.deadline|date:"d-m-Y" }}</div>
+                                <div class="todo-actions">
+                                    <button class="btn btn-edit">Редактировать</button>
+                                    <button class="btn btn-done">Выполнено</button>
+                                    <button class="btn btn-delete">Удалить</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+{% endfor %}
+                    </section>
             </section>
-    </section>
+    
 {% endblock %}

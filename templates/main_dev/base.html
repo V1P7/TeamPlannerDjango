@@ -23,7 +23,105 @@
         <link href="{% static 'main_dev/css/style.css' %}" rel="stylesheet" type="text/css"/>
         <link href="{% static 'main_dev/css/responsive.css' %}" rel="stylesheet" type="text/css"/>
         <!-- CORE CSS TEMPLATE - END -->
+        <style>
 
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .todo-form {
+      background: #f7f7f7;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .todo-form input,
+    .todo-form button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      margin-bottom: 10px;
+    }
+
+    .todo-form button {
+      background: #007bff;
+      color: #fff;
+    }
+
+    .todo-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .todo-list li {
+      border-bottom: 1px solid #eee;
+      padding: 10px 20px;
+    }
+            .todo-form .form-group {
+                margin-bottom: 15px;
+            }
+
+            .todo-form label {
+                display: block;
+                font-weight: bold;
+            }
+
+            .todo-form input, .todo-form textarea {
+                width: 100%;
+                padding: 5px;
+                border: 1px solid #ccc;
+            }
+
+            .btn {
+                padding: 10px 15px;
+                border: none;
+                cursor: pointer;
+            }
+            .btn-edit {
+                background: #1919ee;
+                color: #fff;
+            }
+            .btn-delete {
+                background: #ff1818;
+                color: #fff;
+            }
+            .btn-done {
+                background: #157f15;
+                color: #fff;
+            }
+
+            .btn:hover {
+                background: #0062cc;
+            }
+
+            .todo-item {
+                width: 100%;
+
+                padding: 15px;
+                border: 1px solid #ddd;
+                left: 100px !important;
+            }
+
+            .todo-title {
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .todo-description {
+                font-size: 14px;
+            }
+
+            .todo-footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .done {
+                background: #eee;
+            }
+        </style>
     </head>
     <!-- END HEAD -->
 
