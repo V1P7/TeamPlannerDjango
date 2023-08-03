@@ -1,5 +1,5 @@
 from django import forms
-from .models import ToDo
+from .models import ToDo, BossTask
 
 
 class ToDoForm(forms.ModelForm):
@@ -9,3 +9,13 @@ class ToDoForm(forms.ModelForm):
 	class Meta:
 		model = ToDo
 		fields = ['title', 'description', 'deadline']
+
+
+class BossTaskForm(forms.ModelForm):
+	class Meta:
+		model = BossTask
+		fields = ['title', 'description', 'deadline', 'user', 'date']
+		
+		widgets = {'date': forms.DateTimeInput(attrs = {'type': 'datetime-local'}),
+		           'deadline': forms.DateTimeInput(attrs = {'type': 'datetime-local'}),}
+

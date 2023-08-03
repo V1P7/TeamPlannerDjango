@@ -13,4 +13,8 @@ urlpatterns = [
 	path('complete_todo/<int:pk>/', views.complete_todo, name='complete_todo'),
 	path('delete_todo/<int:pk>/', views.delete_todo, name='delete_todo'),
 	path('boss_task/', views.boss_task, name='boss_task'),
+	path('edit_boss_task/<int:pk>/', views.edit_boss_task, name='edit_boss_task'),
+	path('complete_boss_task/<int:pk>/', views.complete_boss_task, name='complete_boss_task'),
+	path('delete_boss_task/<int:pk>/', views.delete_boss_task, name='delete_boss_task'),
+	path('delete_task/<int:pk>/', views.delete_task, name='delete_task'),
 ]

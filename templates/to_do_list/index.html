@@ -7,11 +7,33 @@
                 <div class="container">
 
                 </div>
+                    {% for task in tasks %}
+                        <div class="todo-item {% if task.is_complete %}completed{% endif %}">
+                            <div class="todo-title">{{ task.title }}</div>
+                            <div class="todo-description">{{ task.description }}</div>
+                            <div class="todo-description">Owner: Boss to {{ task.user }}</div>
+                            <div class="todo-footer">
+                                {% if task.deadline %}
+                                  <div class="todo-deadline">Deadline: {{ task.deadline }}</div>
+                                {% else %}
+                                  <div class="todo-deadline">No deadline</div>
+                                {% endif %}
+                                {% if task.date %}
+                                    <div class="todo-deadline">Date: {{ task.date }}</div>
+                                {% else %}
+                                  <div class="todo-deadline">No date</div>
+                                {% endif %}
+                                <div class="todo-actions ">
+                                    <button class="btn btn-done"><a href="{% url 'delete_task' task.pk %}">Done</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                     {% for todo in todos %}
                         <div class="todo-item {% if todo.is_complete %}completed{% endif %}">
                             <div class="todo-title">{{ todo.title }}</div>
                             <div class="todo-description">{{ todo.description }}</div>
-                            <div class="todo-description">Owner: {{ todo.user }}</div>
+                            <div class="todo-description">Owner: You </div>
                             <div class="todo-footer">
                                 <div class="todo-deadline">Deadline: {{ todo.deadline|date:"d-m-Y" }}</div>
                                 <div class="todo-actions ">
@@ -21,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-{% endfor %}
+                    {% endfor %}
                     </section>
             </section>
     

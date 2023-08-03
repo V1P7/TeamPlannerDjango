@@ -3,18 +3,54 @@
 {% block content %}
     <section id="main-content" class=" ">
                 <section class="wrapper main-wrapper" style=''>
-                <h1 class="title">Create task</h1>
+                <h1 class="title">Create task for developer</h1>
+                <div class="container">
                 <div class="container">
                     <div class="todo-form">
-                        <form method="post"class="todo-form">
+                        <form method="post" class="todo-form">
                             {% csrf_token %}
                                 <div class="form-group">
-
+                                    {{ form2.title.label }}
+                                    {{ form2.title }}
+                                    {{ form2.description.label }}
+                                    {{ form2.description }}
+                                    {{ form2.deadline.label }}
+                                    {{ form2.deadline }}
+                                    {{ form2.date.label }}
+                                    {{ form2.date }}
+                                    {{ form2.user.label }}
+                                    {{ form2.user }}
                                 </div>
                             <button type="submit" class="btn">Create</button>
                         </form>
                     </div>
                 </div>
+                </div>
+                    {% for task in tasks %}
+                        <div class="todo-item {% if task.is_complete %}completed{% endif %}">
+                            <div class="todo-title">{{ task.title }}</div>
+                            <div class="todo-description">{{ task.description }}</div>
+                            <div class="todo-description">Owner: Boss to {{ task.user }}</div>
+                            <div class="todo-footer">
+                                {% if task.deadline %}
+                                  <div class="todo-deadline">Deadline: {{ task.deadline }}</div>
+                                {% else %}
+                                  <div class="todo-deadline">No deadline</div>
+                                {% endif %}
+                                {% if task.date %}
+                                    <div class="todo-deadline">Date: {{ task.date }}</div>
+                                {% else %}
+                                  <div class="todo-deadline">No date</div>
+                                {% endif %}
+                                <div class="todo-actions ">
+                                    <button class="btn btn-done"><a href="{% url 'complete_boss_task' task.pk %}">Done</a></button>
+                                    <button class="btn btn-edit"><a href="{% url 'edit_boss_task' task.pk %}">Edit</a></button>
+                                    <button class="btn btn-delete"><a href="{% url 'delete_boss_task' task.pk %}">Delete</a></button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </section>
             </section>
-        </section>
+
 {% endblock %}

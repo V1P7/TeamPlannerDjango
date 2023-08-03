@@ -4,7 +4,6 @@ from accounts.models import User
 
 
 class ToDo(models.Model):
-	
 	title = models.CharField(max_length = 64, null = False)
 	description = models.TextField(null = True)
 	is_complete = models.BooleanField(default=False)
@@ -15,4 +14,15 @@ class ToDo(models.Model):
 	
 	def __str__(self):
 		return self.title
+
+
+class BossTask(models.Model):
+	title = models.CharField(max_length = 100)
+	description = models.TextField()
+	is_complete = models.BooleanField(default = False)
+	deadline = models.DateTimeField(blank = True, null=True)
+	date = models.DateTimeField(blank = True, null=True)
+	user = models.ForeignKey(User, on_delete = models.CASCADE)
 	
+	def __str__(self):
+		return self.title
