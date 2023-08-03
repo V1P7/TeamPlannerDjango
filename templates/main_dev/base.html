@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html class=" ">
+<html class="">
     <head>
         <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
         <meta charset="utf-8" />
@@ -18,113 +18,27 @@
         <!-- CORE CSS FRAMEWORK - END -->
 
         <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - START -->
+        <link href="{% static 'main_dev/css/to_do_style.css' %}" rel="stylesheet" type="text/css"/>
+
         <link href="{% static 'main_dev/plugins/morris-chart/css/morris.css' %}" rel="stylesheet" type="text/css" media="screen"/><link href="assets/plugins/jquery-ui/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" media="screen"/><link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.1.css" rel="stylesheet" type="text/css" media="screen"/><link href="assets/plugins/icheck/skins/minimal/white.css" rel="stylesheet" type="text/css" media="screen"/>        <!-- OTHER SCRIPTS INCLUDED ON THIS PAGE - END -->
         <!-- CORE CSS TEMPLATE - START -->
         <link href="{% static 'main_dev/css/style.css' %}" rel="stylesheet" type="text/css"/>
         <link href="{% static 'main_dev/css/responsive.css' %}" rel="stylesheet" type="text/css"/>
         <!-- CORE CSS TEMPLATE - END -->
 <style>
-    .todo-item.completed .todo-title {
-        text-decoration: line-through;
+    .btn-edit {
+        background: #1919ee;
+        color: #fff;
     }
-
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
+    .btn-delete {
+        background: #ff1818;
+        color: #fff;
     }
-
-    .todo-form {
-      background: #f7f7f7;
-      padding: 20px;
-      border-radius: 10px;
+    .btn-done {
+        background: #157f15;
+        color: #fff;
     }
-
-    .todo-form input,
-    .todo-form button {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      margin-bottom: 10px;
-    }
-
-    .todo-form button {
-      background: #007bff;
-      color: #fff;
-    }
-
-    .todo-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .todo-list li {
-      border-bottom: 1px solid #eee;
-      padding: 10px 20px;
-    }
-            .todo-form .form-group {
-                margin-bottom: 15px;
-            }
-
-            .todo-form label {
-                display: block;
-                font-weight: bold;
-            }
-
-            .todo-form input, .todo-form textarea {
-                width: 100%;
-                padding: 5px;
-                border: 1px solid #ccc;
-            }
-
-            .btn {
-                padding: 10px 15px;
-                border: none;
-                cursor: pointer;
-            }
-            .btn-edit {
-                background: #1919ee;
-                color: #fff;
-            }
-            .btn-delete {
-                background: #ff1818;
-                color: #fff;
-            }
-            .btn-done {
-                background: #157f15;
-                color: #fff;
-            }
-
-            .btn:hover {
-                background: #0062cc;
-            }
-
-            .todo-item {
-                width: 100%;
-
-                padding: 15px;
-                border: 1px solid #ddd;
-                left: 100px !important;
-            }
-
-            .todo-title {
-                font-size: 18px;
-                font-weight: bold;
-            }
-
-            .todo-description {
-                font-size: 14px;
-            }
-
-            .todo-footer {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .done {
-                background: #eee;
-            }
-        </style>
+</style>
     </head>
     <!-- END HEAD -->
 
@@ -492,7 +406,7 @@
                     <div class="profile-info row">
 
                         <div class="profile-image col-lg-4 col-md-4 col-4">
-                            <a href="ui-profile.html">
+                            <a href="{% url 'team_panel' %}">
                                 <img src="{{ image.url }}" class="img-fluid rounded-circle">
                             </a>
                         </div>
@@ -514,19 +428,21 @@
                     <!-- USER INFO - END -->
                     <ul class='wraplist'>
                         <li class="{{ titleToDo }}">
-                            <a href="">
+                            <a href="{% url 'to_do_list' %}">
 {#                                {% url 'to_do_list' %}#}
                                 <i class="fa-solid fa-list"></i>
                                 <span class="title">To-do list</span>
                             </a>
                         </li>
+                        {% if user.is_staff %}
                         <li class="{{ titleAllTasks }}">
-                            <a href="javascript:;">
+                            <a href="{% url 'boss_task' %}">
                                 <i class="fa-solid fa-list-check"></i>
                                 <span class="title">All tasks</span>
                                 <span class="title"></span><span class="badge badge-orange">NEW</span>
                             </a>
                         </li>
+                        {% endif %}
                         <li class="{{ titlePlanner }}">
                             <a href="">
                                 <i class="fa-regular fa-calendar-days"></i>

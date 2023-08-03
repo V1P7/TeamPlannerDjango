@@ -3,27 +3,15 @@
 {% block content %}
     <section id="main-content" class=" ">
                 <section class="wrapper main-wrapper" style=''>
-                <h1 class="title">To-do list</h1>
+                <button class="btn btn-done"><a href="{% url 'create_to_do' %}">Create To Do</a></button>
                 <div class="container">
-                    <div class="todo-form">
-                        <form method="post"class="todo-form">
-                            {% csrf_token %}
-                                <div class="form-group">
-                                    {{ form.title.label }}
-                                    {{ form.title }}
-                                    {{ form.description.label }}
-                                    {{ form.description }}
-                                    {{ form.deadline.label }}
-                                    {{ form.deadline }}
-                                </div>
-                            <button type="submit" class="btn">Create</button>
-                        </form>
-                    </div>
+
                 </div>
                     {% for todo in todos %}
                         <div class="todo-item {% if todo.is_complete %}completed{% endif %}">
                             <div class="todo-title">{{ todo.title }}</div>
                             <div class="todo-description">{{ todo.description }}</div>
+                            <div class="todo-description">Owner: {{ todo.user }}</div>
                             <div class="todo-footer">
                                 <div class="todo-deadline">Deadline: {{ todo.deadline|date:"d-m-Y" }}</div>
                                 <div class="todo-actions ">
