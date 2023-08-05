@@ -10,7 +10,7 @@ urlpatterns = [
     path('team/', include('main_dev.urls')),
     path('account/', include('accounts.urls')),
     path('team/team_panel/', include('to_do_list.urls')),
-    path('api-auth/', include('rest_framework.urls'))
+    path('team/team_panel/', include('projects.urls')),
 ]
 
 if settings.DEBUG:
