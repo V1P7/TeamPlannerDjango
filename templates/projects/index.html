@@ -3,9 +3,41 @@
 {% block content %}
 	<section id="main-content" class=" ">
         <section class="wrapper main-wrapper" style=''>
-            <h1 class="title">Projects</h1>
+            <h1 class="title">All Projects</h1>
                 <div class="container">
+                    {% for project in projects %}
+                            <div class="todo-title">{{ project.title_name }}</div>
+                            <div class="todo-description">{{ project.description }}</div>
+                            <div class="todo-description">Owner: {{ project.user }}</div>
 
+                            <div class="todo-description">Developers: </div>
+
+                            <ul>
+
+                            {% for developer in project.developers.all %}
+                            <li>{{ developer }}</li>
+                        {% endfor %}
+
+                            </ul>
+
+                            <div class="todo-footer">
+                                {% if project.deadline %}
+                                  <div class="todo-deadline">Deadline: {{ project.deadline }}</div>
+                                {% else %}
+                                  <div class="todo-deadline">No deadline</div>
+                                {% endif %}
+                                {% if project.date %}
+                                    <div class="todo-deadline">Date: {{ project.created_at }}</div>
+                                {% else %}
+                                  <div class="todo-deadline">No date</div>
+                                {% endif %}
+{#                                <div class="todo-actions ">#}
+{#                                    <button class="btn btn-done"><a href="{% url 'complete_boss_task' task.pk %}">Done</a></button>#}
+{#                                    <button class="btn btn-edit"><a href="{% url 'edit_boss_task' task.pk %}">Edit</a></button>#}
+{#                                    <button class="btn btn-delete"><a href="{% url 'delete_boss_task' task.pk %}">Delete</a></button>#}
+{#                                </div>#}
+                            </div>
+                    {% endfor %}
                 </div>
             </section>
     </section>

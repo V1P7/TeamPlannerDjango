@@ -30,9 +30,7 @@ INSTALLED_APPS = [
     'main_dev.apps.MainDevConfig',
     'accounts.apps.AccountsConfig',
     'to_do_list.apps.ToDoListConfig',
-    'rest_framework',
-    'django_filters',
-    'corsheaders',
+    'projects.apps.ProjectsConfig'
 ]
 
 MIDDLEWARE = [

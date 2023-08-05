@@ -450,6 +450,14 @@
                                 <span class="title"></span><span class="badge badge-orange">NEW</span>
                             </a>
                         </li>
+                    {% if user.is_staff %}
+                        <li class="{{ titleCreateProject }}">
+                            <a href="{% url 'create_project' %}">
+                                <i class="fa-solid fa-plus"></i>
+                                <span class="title">Create Project</span>
+                            </a>
+                        </li>
+                    {% endif %}
                         <li class="">
                             <a href="{% url 'logout' %}">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
