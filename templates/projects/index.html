@@ -23,14 +23,12 @@
                                 {% else %}
                                   <div class="todo-deadline">No deadline</div>
                                 {% endif %}
-
                                     <div class="todo-deadline">Date: {{ project.created_at }}</div>
-
-{#                                <div class="todo-actions ">#}
-{#                                    <button class="btn btn-done"><a href="{% url 'complete_boss_task' task.pk %}">Done</a></button>#}
-{#                                    <button class="btn btn-edit"><a href="{% url 'edit_boss_task' task.pk %}">Edit</a></button>#}
-{#                                    <button class="btn btn-delete"><a href="{% url 'delete_boss_task' task.pk %}">Delete</a></button>#}
-{#                                </div>#}
+                                <div class="todo-actions ">
+                                    <button class="btn btn-done"><a href="{% url 'complete_project' project.pk %}">Done</a></button>
+                                    <button class="btn btn-edit"><a href="{% url 'edit_project' project.pk %}">Edit</a></button>
+                                    <button class="btn btn-delete"><a href="{% url 'delete_project' project.pk %}">Delete</a></button>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}

@@ -54,3 +54,36 @@ def create_project(request):
 		'form': form,
 	}
 	return render(request, 'projects/create_project.html', context)
+
+
+def edit_project(request, pk):
+	user, created = User.objects.get_or_create(username = request.user.username)
+	project = Project.objects.get(pk = pk)
+	if request.method == 'POST':
+		form = ProjectForm(request.POST, instance = project)
+		if form.is_valid():
+			form.save()
+			return redirect('index_projects')
+	
+	form = ProjectForm(instance = project)
+	context = {
+		'first_name': user.first_name,
+		'last_name': user.last_name,
+		'position': user.position,
+		'image': user.image,
+		'form': form,
+	}
+	return render(request, 'projects/edit_project.html', context)
+
+
+def complete_project(request, pk):
+	project = Project.objects.get(pk = pk)
+	project.is_complete = True
+	project.save()
+	return redirect('index_projects')
+
+
+def delete_project(request, pk):
+	project = Project.objects.get(pk = pk)
+	project.delete()
+	return redirect('index_projects')
