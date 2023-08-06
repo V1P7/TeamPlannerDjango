@@ -13,11 +13,9 @@
                             <div class="todo-description">Developers: </div>
 
                             <ul>
-
-                            {% for developer in project.developers.all %}
-                            <li>{{ developer }}</li>
-                        {% endfor %}
-
+                                {% for developer in project.developers.all %}
+                                    <li>{{ developer.username }} - {{ developer.first_name }} {{ developer.last_name }}</li>
+                                {% endfor %}
                             </ul>
 
                             <div class="todo-footer">
