@@ -1,17 +1,15 @@
 from django.shortcuts import render, redirect
-from django_filters.rest_framework import DjangoFilterBackend
 from .models import ToDo, BossTask
 from accounts.models import User
-from rest_framework import viewsets, filters
-
+from projects.models import Project
 from .forms import ToDoForm, BossTaskForm
-from datetime import datetime
 
 
 def to_do_list(request):
 	user, created = User.objects.get_or_create(username = request.user.username)
 	tasks = BossTask.objects.filter(user = request.user)
 	todos = ToDo.objects.filter(user=request.user)
+	projects = Project.objects.filter(developers = request.user)
 	titleToDo = "open"
 	context = {
 		'titleToDo': titleToDo,
@@ -21,7 +19,7 @@ def to_do_list(request):
 		'image': user.image,
 		'todos': todos,
 		'tasks': tasks,
-		
+		'projects': projects,
 	}
 	return render(request, 'to_do_list/index.html', context)
 
