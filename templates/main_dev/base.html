@@ -352,6 +352,7 @@
                             <a href="#" data-toggle="dropdown" class="toggle">
                                 <img src="{{ image.url }}" alt="user-image" class="rounded-circle img-inline">
                                 <span>{{ first_name}} {{ last_name }}<i class="fa fa-angle-down"></i></span>
+
                             </a>
                             <ul class="dropdown-menu profile animated fadeIn">
                                 <li class="dropdown-item">
@@ -419,9 +420,8 @@
                                 <!-- Available statuses: online, idle, busy, away and offline -->
                                 <span class="profile-status online"></span>
                             </h3>
-
-                            <p class="profile-title">{{ position}}</p>
-
+                            <p class="profile-title">Vacation days {{ vacation_days }}</p>
+                            <p class="profile-title">{{ position }}</p>
                         </div>
 
                     </div>

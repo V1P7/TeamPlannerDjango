@@ -17,27 +17,23 @@ def signup(request):
 
 def signin(request):
 	if request.method == 'POST':
-		
 		form = SignInForm(request.POST)
-		
 		if form.is_valid():
-			
 			username = form.cleaned_data['username']
 			password = form.cleaned_data['password']
-			
 			user = authenticate(request, username = username, password = password)
-			
 			if user is not None:
 				login(request, user)
 				return redirect('team_panel')
-	
 	else:
 		form = SignInForm()
-	
 	return render(request, 'accounts/signin.html', {'form': form})
 
 
 def logout_user(request):
     logout(request)
     return redirect('signin')
+
+
+
 

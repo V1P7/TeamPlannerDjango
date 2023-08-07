@@ -11,7 +11,6 @@ class User(AbstractUser):
 	join_date = models.DateField(null = True, blank = True)
 	image = models.ImageField(upload_to='media', blank=True, default='media/avatar.png')
 	is_on_leave = models.BooleanField(default = False)
-	vacations_days = models.PositiveIntegerField(default = 0)
 	
 	def __str__(self):
 		return self.username
