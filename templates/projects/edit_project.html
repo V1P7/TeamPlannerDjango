@@ -9,16 +9,7 @@
                         <form method="post"class="todo-form">
                             {% csrf_token %}
                                 <div class="form-group">
-                                    {{ form.title_name.label }}
-                                    {{ form.title_name }}
-                                    {{ form.description.label }}
-                                    {{ form.description }}
-                                    {{ form.deadline.label }}
-                                    {{ form.deadline }}
-                                    {{ form.user.label }}
-                                    {{ form.user }}
-                                    {{ form.developers.label }}
-                                    {{ form.developers }}
+                                     {{ form.as_p }}
                                 </div>
                             <button type="submit" class="btn">Save</button>
                         </form>

@@ -13,7 +13,7 @@
                             <div class="todo-description">Developers: </div>
                             <ul>
                                 {% for developer in project.developers.all %}
-                                    <li>{{ developer.username }} - {{ developer.first_name }} {{ developer.last_name }}</li>
+                                    <li>{{ developer.username }} - {{ developer.position }}</li>
                                 {% endfor %}
                             </ul>
 
@@ -24,6 +24,7 @@
                                   <div class="todo-deadline">No deadline</div>
                                 {% endif %}
                                     <div class="todo-deadline">Date: {{ project.created_at }}</div>
+                                    <div class="todo-deadline">Status: {{ project.status }}</div>
                                 <div class="todo-actions ">
                                     <button class="btn btn-done"><a href="{% url 'complete_project' project.pk %}">Done</a></button>
                                     <button class="btn btn-edit"><a href="{% url 'edit_project' project.pk %}">Edit</a></button>

@@ -9,6 +9,6 @@ class ProjectForm(forms.ModelForm):
     
     class Meta:
         model = Project
-        fields = ['title_name', 'description', 'deadline', 'user', 'developers']
+        fields = ['title_name', 'description', 'deadline', 'user', 'developers', 'status']
         
         widgets = {'deadline': forms.DateTimeInput(attrs = {'type': 'datetime-local'}), }
