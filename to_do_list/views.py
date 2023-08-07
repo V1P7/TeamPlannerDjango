@@ -3,6 +3,7 @@ from .models import ToDo, BossTask
 from accounts.models import User
 from projects.models import Project
 from .forms import ToDoForm, BossTaskForm
+from main_dev.views import get_vacation_days
 
 
 def to_do_list(request):
@@ -10,6 +11,7 @@ def to_do_list(request):
 	tasks = BossTask.objects.filter(user = request.user)
 	todos = ToDo.objects.filter(user=request.user)
 	projects = Project.objects.filter(developers = request.user)
+	vacation_days = get_vacation_days(request)
 	titleToDo = "open"
 	context = {
 		'titleToDo': titleToDo,
@@ -20,6 +22,7 @@ def to_do_list(request):
 		'todos': todos,
 		'tasks': tasks,
 		'projects': projects,
+		'vacation_days': vacation_days,
 	}
 	return render(request, 'to_do_list/index.html', context)
 
@@ -88,6 +91,7 @@ def boss_task(request): # create boss task
 			task = form2.save()
 			return redirect('boss_task')
 		
+	vacation_days = get_vacation_days(request)
 	titleAllTasks = "open"
 	context = {
 		'titleAllTasks': titleAllTasks,
@@ -97,6 +101,7 @@ def boss_task(request): # create boss task
 		'image': user.image,
 		'tasks': tasks,
 		'form2': form2,
+		'vacation_days': vacation_days,
 	}
 	return render(request, 'to_do_list/boss_task.html', context)
 

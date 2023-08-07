@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Project
 from .forms import ProjectForm
 from accounts.models import User
+from main_dev.views import get_vacation_days
 
 
 def index_projects(request):
@@ -19,6 +20,7 @@ def index_projects(request):
     user, created = User.objects.get_or_create(username=request.user.username)
     projects = Project.objects.filter(user=request.user)
     developers = Project.objects.filter(developers=request.user)
+    vacation_days = get_vacation_days(request)
     titleProjects = "open"
     context = {
         'titleProjects': titleProjects,
@@ -28,7 +30,8 @@ def index_projects(request):
         'image': user.image,
         'projects': projects,
         'developers': developers,
-        'form': form,  # Pass the form to the template
+        'form': form,
+	    'vacation_days': vacation_days,
     }
     return render(request, 'projects/index.html', context)
 
