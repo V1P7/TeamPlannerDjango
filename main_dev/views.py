@@ -4,12 +4,16 @@ from accounts.models import User
 
 
 def get_vacation_days(request):
-	user, created = User.objects.get_or_create(username = request.user.username)
-	current_date = datetime.now()
-	join_date_datetime = datetime.combine(user.join_date, datetime.min.time())
-	days = (current_date - join_date_datetime).days
-	vacation_days = round((days / 365) * 28, 1)
-	return vacation_days
+    user, created = User.objects.get_or_create(username=request.user.username)
+    current_date = datetime.now()
+
+    if user.join_date:
+        join_date_datetime = datetime.combine(user.join_date, datetime.min.time())
+        days = (current_date - join_date_datetime).days
+        vacation_days = round((days / 365) * 28, 1)
+        return vacation_days
+    else:
+        return 0
 
 
 def index(request):
